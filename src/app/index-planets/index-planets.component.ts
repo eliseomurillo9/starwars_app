@@ -17,8 +17,8 @@ export class IndexPlanetsComponent implements OnInit {
     // this.getPlanets()
     forkJoin([this.planetUrl1, this.planetUrl2]).subscribe(resultes => {
       console.log(resultes[0].results, resultes[1]);
-      this.planets.push(resultes[0].results, resultes[1].results);
-      console.log("hello", this.planets);
+      this.planets.push(resultes[0], resultes[1]);
+      console.log("hello", this.planets[0]);
       
     })
    

@@ -27,7 +27,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let planet of planets; index as i ">
-          <tr *ngFor="let planetInfo of planet; index as n">
+          <tr *ngFor="let planetInfo of planet.results; index as n">
             <td>{{ planetInfo.name }}</td>
             <td>{{ planetInfo.terrain }}</td>
           </tr>
@@ -36,7 +36,7 @@
     </div>
     <div class="card-footer">
       <div class="medium-information mt-5">
-        <span class="info">{{ planets?.count }} resultat(s)</span>
+        <span class="info">{{ planets?.count}} resultat(s)</span>
       </div>
     </div>
   </div>
