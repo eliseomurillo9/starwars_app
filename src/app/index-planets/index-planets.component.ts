@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { Component, OnInit, ResolvedReflectiveFactory, resolveForwardRef } from '@angular/core';
+import {Output, EventEmitter} from '@angular/core'
 
 @Component({
   selector: 'app-index-planets',
@@ -8,28 +8,69 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./index-planets.component.scss']
 })
 export class IndexPlanetsComponent implements OnInit {
+  count: any;
   planets: any = [];
-  planetUrl1 = this.http.get<any>('https://swapi.dev/api/planets/');
-  planetUrl2 = this.http.get<any>('https://swapi.dev/api/planets/?page=2');
+  savedPlanets: any = [];
+  pages: any;
+  showResult: boolean = false
+
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-    // this.getPlanets()
-    forkJoin([this.planetUrl1, this.planetUrl2]).subscribe(resultes => {
-      console.log(resultes[0].results, resultes[1]);
-      this.planets.push(resultes[0], resultes[1]);
-      console.log("hello", this.planets[0]);
-      
-    })
-   
+  async ngOnInit(): Promise<void> {
+    await this.getCount();
+    this.getPlanets();
   }
-  // getPlanets() {
-  //  this.http.get<any>('https://swapi.dev/api/planets/')
-  //     .subscribe(planets => {
-  //       this.planets = planets;
 
-  //     })
-  // }
+  async getCount(): Promise<void> {
+    return new Promise((resolve) => {
+      this.http.get<any>('https://swapi.dev/api/planets/')
+        .subscribe((count: any) => {
+          this.count = count.count;
+          resolve()
+        })
+    })
 
-  
-}
+  }
+  @Output() sendPlanetData = new EventEmitter<any>();
+
+  planetSelected(selected: any){
+    this.sendPlanetData.emit(selected)
+  }
+  getPlanets() {
+    for (let index = 1; index <= (this.count / 10); index++) {
+
+      this.http.get<any>(`https://swapi.dev/api/planets/?page=${index}`).subscribe((data: any) => {
+          this.planets = this.planets.concat(data.results);
+          this.savedPlanets = this.savedPlanets.concat(data.results);
+        });
+    }
+
+    
+  }
+
+  populationFilter(event: any) {
+    let populationFilter = event.target.value
+    console.log(populationFilter);
+    this.planets = this.savedPlanets;
+    if (populationFilter === '1') {
+      this.planets = this.planets.filter((pop: any) => pop.population <= 100000);
+    }
+    if(populationFilter === "2"){
+      this.planets = this.planets.filter((pop: any) => pop.population > 100000 && pop.population <= 100000000);
+    }
+    if( populationFilter === "3"){
+      this.planets = this.planets.filter((pop: any) => pop.population > 100000000);
+    }
+    if( populationFilter === "unknown"){
+      this.planets = this.planets.filter((pop: any) => pop.population == "unknown");
+    }
+
+    this.count = this.planets.length
+  }
+
+};
+
+
+
+
+

@@ -1,0 +1,52 @@
+<main class="container container-1-2">
+  <app-index-vehicles (sendVehicleInfo)="receivedVehicleInfo($event)"></app-index-vehicles>
+  <div>
+    <div class="card" *ngIf="!vehicleInfo">
+      <h1>{{message}}</h1>
+    </div>
+    <div class="card" *ngIf="vehicleInfo">
+      <div class="information mb-5">
+        <div>
+          <div class="title text-primary">{{vehicleInfo?.name}}</div>
+          <div class="info mb-3">Prix: {{vehicleInfo?.cost_in_credits}} </div>
+        </div>
+      </div>
+      <div class="d-grid-2 mt-5 mb-5 w-100">
+        <div class="information">
+          <span class="fas fa-motorcycle fa-3x img text-secondary"></span>
+          <div>
+            <div class="bold text-secondary"> Model </div>
+            <p>{{vehicleInfo?.model}}</p>
+          </div>
+        </div>
+        <div class="information">
+          <span class="fas fa-text-height fa-3x img text-secondary"></span>
+          <div>
+            <div class="bold text-secondary"> Taille </div>
+            <p>{{vehicleInfo?.length}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="d-grid-2 mt-5 mb-5 w-100">
+        <div class="information">
+          <span class="fas fa-users fa-3x img text-secondary"></span>
+          <div>
+            <div class="bold text-secondary"> Nombre de passagers possible </div>
+            <p>{{vehicleInfo?.passengers}}</p>
+          </div>
+        </div>
+        <div class="information">
+          <span class="fas fa-clock fa-3x img text-secondary"></span>
+          <div>
+            <div class="bold text-secondary"> Consommables </div>
+            <p>{{ vehicleInfo?.consumables }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 d-flex right">
+        <div class="btn">En savoir plus</div>
+      </div>
+    </div>
+
+  </div>
+</main>

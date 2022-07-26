@@ -1,13 +1,12 @@
-
 <div class="card sticky flex tall">
     <div class="card-header">
       <h2 class="title text-primary">PLANÈTES</h2>
-      <div class="form-group" *ngIf="planets.length">
-        <select class="select pr-5" (change)="populationFilter($event)">
-          <option value =''>Par population</option>
-          <option value="1">0 à 100.000</option>
-          <option value="2">0 à 100.000.000</option>
-          <option value="3">+ à 100.000.000</option>
+      <div class="form-group" >
+        <select class="select pr-5" (change)="filterVehicles($event)">
+          <option value =''>Par prix</option>
+          <option value="1">0 à 10.000</option>
+          <option value="2">10.000 à 100.000</option>
+          <option value="3">+ de 100.000</option>
           <option value="unknown">Unknown</option>
         </select>
       </div>
@@ -24,20 +23,20 @@
         <thead>
           <tr>
             <th>Nom</th>
-            <th>Terrain</th>
+            <th>Prix</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let planet of planets; index as i " (click)='planetSelected(planet)'>
-            <td >{{ planet.name }}</td>
-            <td>{{ planet.terrain }}</td>
+          <tr *ngFor="let vehicle of vehicles; index as i" (click)="vehicleSelected(vehicle)">
+            <td >{{vehicle.name}}</td>
+            <td>{{vehicle.cost_in_credits}}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="card-footer">
       <div class="medium-information mt-5">
-        <span class="info">{{ count }} resultat(s)</span>
+        <span class="info">{{pagesCount}} resultat(s)</span>
       </div>
     </div>
   </div>
