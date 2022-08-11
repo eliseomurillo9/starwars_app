@@ -1,0 +1,73 @@
+<main class="container container-1-1">
+    <div>
+        <div class="card card-1">
+            <h2 class="title">S'incrire pour le prochain décolage !</h2>
+            <p>Inscrivez-vous pour participer aux prochaines trouvailles !</p>
+            <form *ngIf="nextMissionForm" [formGroup]="nextMissionForm" (ngSubmit)="onSubmit()">
+                <div class="form-group-1-1">
+                    <div class="form-group">
+                        <label for="first_name">Prénom</label>
+                        <input type="text" class="form-control" id="first_name" placeholder="Entrez votre prénom"
+                            formControlName="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Nom</label>
+                        <input type="text" class="form-control" id="last_name" placeholder="Entrez votre nom"
+                            formControlName="lastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="first_name">Poids</label>
+                        <input type="number" class="form-control" id="first_name" placeholder="Entrez votre poids"
+                            formControlName="weigth">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h2 class="subtitle mt-5 mb-3">Choississez votre combinaison spatiale : </h2>
+                    <span class="badge badge-primary mr-2">
+                        <input type="radio"  id="1" value="1" formControlName="suit">
+                        <label for="1">
+                            <img src="../../assets/spacesuit2.7daedab8.jpeg" alt="Combinaison spatiale n°1" >
+                        </label>
+                    </span>
+                    <span class="badge badge-primary">
+                        <input type="radio" id="2" value="2" formControlName="suit">
+                        <label for="2">
+                            <img src="../../assets/spacesuit1.28f26112.jpg" alt="Combinaison spatiale n°2"/>
+                        </label>
+                    </span>
+                </div>
+                <button class="btn" type="submit">
+                    S'inscrire
+                </button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div class="card card-2">
+            <h2 class="title text-primary">
+                Liste des participants
+            </h2>
+            <table class="table w-100">
+                <thead class="thead">
+                    <tr>
+                        <th class="th">Nom Prénom</th>
+                        <th class="th">Poids</th>
+                        <th class="th text-right">Combinaison spatiale</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr class="tr" *ngFor="let person of missionList; index as i">
+                        <td class="td"> {{ person.name }} {{person.lastName}}</td>
+                        <td class="td">{{person.weigth}}</td>
+                        <td class="td text-right"><img src="{{person.suit}}"
+                                alt="Combinaison spatiale n°1">
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

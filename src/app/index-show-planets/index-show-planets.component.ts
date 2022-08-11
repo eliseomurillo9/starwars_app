@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Planets } from '../planets';
 
 @Component({
   selector: 'app-index-show-planets',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexShowPlanetsComponent implements OnInit {
   
-  planetInfo: any; 
+  planetInfo!: Planets; 
   message: string = "Click sur une planete";
   constructor() { }
 
@@ -16,7 +17,7 @@ export class IndexShowPlanetsComponent implements OnInit {
   }
  
 
-  receivePlanetData(selectedPlanet: any){
+  receivePlanetData(selectedPlanet: Planets){
     this.planetInfo = selectedPlanet;
   }
 }

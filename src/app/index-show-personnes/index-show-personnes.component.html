@@ -1,0 +1,45 @@
+<main class="container container-1-2">
+  <app-index-personnes (sendPersonInfo)="receivedPersonInfo($event)"></app-index-personnes>
+  <div class="card">
+    <div class="information mb-5">
+      <div>
+        <h2 class="title text-secondary">{{personnageInfo.name}}</h2>
+        <div class="info mb-3"><span class="text-secondary">Taille :</span> {{personnageInfo.height}} <span>cm</span></div>
+      </div>
+    </div>
+    <div class="small-information mt-5">
+      <p>{{personnageInfo.mass}}</p><span class="fas fa-weight fa-2x text-secondary"></span>
+    </div>
+    <div class="small-information mt-5">
+      <p>{{personnageInfo.birth_year}}</p><span class="fas fa-birthday-cake fa-2x text-secondary"></span>
+    </div>
+    <div class="small-information mt-5">
+      <p>{{personnageInfo?.homeworld}}</p><span class="fas fa-globe fa-2x text-secondary"></span>
+    </div>
+    <div class="d-grid-2 mt-5 mb-5 w-100">
+      <div class="information"><span class="fas fa-tint fa-3x img text-secondary"></span>
+        <div>
+          <div class="bold text-secondary"> Couleur de cheveux </div>
+          <div class="info">{{personnageInfo.hair_color}}</div>
+        </div>
+      </div>
+      <div class="information"><span class="fas fa-eye fa-3x img text-secondary"></span>
+        <div>
+          <div class="bold text-secondary"> Couleur des yeux </div>
+          <div class="info">{{personnageInfo.eye_color}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="medium-information mt-4">
+      <p class="bold text-secondary">Véhicules</p>
+      <div *ngIf="vehicleStock; else elseBlock"> 
+        <div *ngFor="let vehicle of vehiclesType; index as i">{{vehicle.name}}</div>
+      </div>
+      <ng-template #elseBlock>{{messageError}}</ng-template>
+      <!---->
+    </div>
+    <div class="mt-5 d-flex right">
+      <div class="btn">En savoir plus</div>
+    </div>
+  </div>
+</main>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, } from '@angular/core';
+import { Vehicle } from '../vehicle';
 
 @Component({
   selector: 'app-index-vehicles',
@@ -7,8 +8,8 @@ import { Component, EventEmitter, OnInit, Output, } from '@angular/core';
   styleUrls: ['./index-vehicles.component.scss']
 })
 export class IndexVehiclesComponent implements OnInit {
-  vehicles: any = [];
-  vehiclesList: any = [];
+  vehicles: Vehicle[] = [];
+  vehiclesList: Vehicle[] = [];
   pagesCount: number = 0;
   nPage: number = 1
 

@@ -12,7 +12,7 @@
         routerLinkActive="active" 
         [routerLinkActiveOptions]="{exact:true}"
         class="navbar-link"> Accueil</a>
-        <a href="template.html" class="navbar-link">
+        <a href="template.html" routerLink="next-mission" routerLinkActive="active" class="navbar-link">
             Prochaine Mission
         </a>
     </nav>
@@ -22,11 +22,11 @@
         <span class="fas fa-globe fa-3x"></span>
         <p>Planètes</p>
     </a>
-    <a href="molecules.html" routerLink="index-show-vehicles" routerLinkActive="active"class="nav-vertical-link">
+    <a routerLink="index-show-vehicles" routerLinkActive="active" class="nav-vertical-link">
         <span class="fas fa-rocket fa-3x"></span>
         <p>Véhicules</p>
     </a>
-    <a href="organisms.html" class="nav-vertical-link">
+    <a routerLink="index-show-personnes" routerLinkActive="active" class="nav-vertical-link">
         <span class="fab fa-reddit-alien fa-3x"></span>
         <p>Personnes</p>
     </a>
